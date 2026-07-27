@@ -47,7 +47,7 @@ Your Journey Details:
 🚂 Train: ${p.TrainNo} ${p.TrainName}
 🚃 Coach: ${p.Coach}
 💺 Seat No: ${p.Seatno}
-
+🛏 Berth:${p.Berth}
 --------------------------------
 
 🛄 *Surat to Pune*
@@ -55,7 +55,7 @@ Your Journey Details:
 🚂 Train: ${p["TrainNoR"]} ${p["TrainNameR"]}
 🚃 Coach: ${p["Return Coach"]}
 💺 Seat No: ${p["Return Seatno"]}
-
+🛏 Berth:${p.BerthR}
 --------------------------------
 
 🙏 धन्यवाद
