@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
+from fastapi import Query
 
 import pandas as pd
 from pathlib import Path
@@ -29,54 +30,26 @@ EXCEL_FILE = Path("data/passengers.xlsx")
 def home(request: Request):
 
     return templates.TemplateResponse(
-        "index.html",
-        {
-            "request": request
-        }
+        request=request,
+        name="index.html"
     )
 
 
 
 @app.get("/search")
-def search(
-    name: str = "",
-    mobile: str = "",
-    pnr: str = ""
-):
+def search(q: str = Query("")):
 
-    df = pd.read_excel(EXCEL_FILE)
+    df = pd.read_excel(EXCEL_FILE).fillna("")
 
+    if not q:
+        return []
 
-    result = df
+    q = str(q).strip().lower()
 
+    result = df[
+        df.astype(str)
+          .apply(lambda row: row.str.lower().str.contains(q))
+          .any(axis=1)
+    ]
 
-    if name:
-
-        result = result[
-            result["Name"]
-            .astype(str)
-            .str.contains(name, case=False, na=False)
-        ]
-
-
-    if mobile:
-
-        result = result[
-            result["Mobile"]
-            .astype(str)
-            .str.contains(mobile, na=False)
-        ]
-
-
-    if pnr:
-
-        result = result[
-            result["PNR"]
-            .astype(str)
-            .str.contains(pnr, na=False)
-        ]
-
-
-    return result.fillna("").to_dict(
-        orient="records"
-    )
+    return result.to_dict(orient="records")

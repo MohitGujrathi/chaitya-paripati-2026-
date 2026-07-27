@@ -36,7 +36,7 @@ async function searchPassenger(){
     let value = document.getElementById("searchBox").value;
 
     let response = await fetch(
-        `/search?name=${value}&mobile=${value}&pnr=${value}`
+    `/search?q=${encodeURIComponent(value)}`
     );
 
     let data = await response.json();
