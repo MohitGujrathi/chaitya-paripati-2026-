@@ -47,9 +47,9 @@ def search(q: str = Query("")):
     q = str(q).strip().lower()
 
     result = df[
-        df.astype(str)
-          .apply(lambda row: row.str.lower().str.contains(q))
-          .any(axis=1)
+    df.astype(str)
+      .apply(lambda row: row.str.contains(q, case=False, na=False))
+      .any(axis=1)
     ]
 
     return result.to_dict(orient="records")
