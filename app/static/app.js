@@ -44,7 +44,7 @@ Your Journey Details:
 
 🛄 *Going Journey*
 📅 Date: ${journeyDate}
-🚂 Train: ${p.Train} ${p.TrainName}
+🚂 Train: ${p.TrainNo} ${p.TrainName}
 🚃 Coach: ${p.Coach}
 💺 Seat No: ${p.Seatno}
 
@@ -52,13 +52,17 @@ Your Journey Details:
 
 🛄 *Return Journey*
 📅 Date:  ${returnDate}
-🚂 Train: ${p["Return Train"]} ${p["TrainNameR"]}
+🚂 Train: ${p["TrainNoR"]} ${p["TrainNameR"]}
 🚃 Coach: ${p["Return Coach"]}
 💺 Seat No: ${p["Return Seatno"]}
 
 --------------------------------
 
 🙏 धन्यवाद
+
+आपकी यात्रा मंगलमय हो।
+प्रभु के आशीर्वाद से यात्रा सुखद एवं सफल हो।
+
 श्री पौड रोड जैन श्वेतांबर मूर्ति पूजक संघ
 `;
 
