@@ -28,36 +28,39 @@ async function searchPassenger(){
     }else{
 
         data.forEach(p=>{
-            const message = `
-            🙏 *श्री पौड रोड जैन श्वेतांबर मूर्ति पूजक संघ*
+            const journeyDate = formatDate(p.Date);
+            const returnDate = formatDate(p.DateR);
+const message = `
+🙏 *श्री पौड रोड जैन श्वेतांबर मूर्ति पूजक संघ*
 
-            🌸 *पूर्णिमा पाबल यात्रा वर्ग, पुणे*
+    🌸 *पूर्णिमा पाबल यात्रा वर्ग, पुणे*
+Pune - Surat - Navsari - Alipur - Pune
 
-            ----------------
+--------------------------------
 
-            Dear *${p.Name}*,
+Dear *${p.Name}*,
 
-            Your Journey Details:
+Your Journey Details:
 
-            🛄 *Going Journey*
-            🚂 Train: ${p.Train}
-            🚃 Coach: ${p.Coach}
-            💺 Seat No: ${p.Seatno}
-            🛏️ Birth: ${p.Birth}
+🛄 *Going Journey*
+📅 Date: ${journeyDate}
+🚂 Train: ${p.Train} ${p.TrainName}
+🚃 Coach: ${p.Coach}
+💺 Seat No: ${p.Seatno}
 
-            ----------------
+--------------------------------
 
-            🛄 *Return Journey*
-            🚂 Train: ${p["Return Train"]}
-            🚃 Coach: ${p["Return Coach"]}
-            💺 Seat No: ${p["Return Seatno"]}
-            🛏️ Birth: ${p["Return Birth"]}
+🛄 *Return Journey*
+📅 Date:  ${returnDate}
+🚂 Train: ${p["Return Train"]} ${p["TrainNameR"]}
+🚃 Coach: ${p["Return Coach"]}
+💺 Seat No: ${p["Return Seatno"]}
 
-            ----------------
+--------------------------------
 
-            🙏 धन्यवाद
-            श्री पौड रोड जैन श्वेतांबर मूर्ति पूजक संघ
-            `;
+🙏 धन्यवाद
+श्री पौड रोड जैन श्वेतांबर मूर्ति पूजक संघ
+`;
 
             const whatsappUrl =
             "https://wa.me/91" + p.Mobile + "?text=" + 
@@ -89,10 +92,15 @@ console.log(encodeURIComponent(message));
     <div class="trip-title">
         🛕 Going Journey
     </div>
+    
+    <div class="row">
+        <span class="label">📅 Date</span>
+        <span class="value">${journeyDate}</span>
+    </div>
 
     <div class="row">
         <span class="label">🚆 Train</span>
-        <span class="value">${p.Train}</span>
+        <span class="value">${p.TrainNo}-${p.TrainName}</span>
     </div>
 
     <div class="row">
@@ -105,10 +113,6 @@ console.log(encodeURIComponent(message));
         <span class="value">${p.Seatno}</span>
     </div>
 
-    <div class="row">
-        <span class="label">🛏 Birth</span>
-        <span class="value">${p.Birth}</span>
-    </div>
 
 
     <div class="trip-title">
@@ -116,8 +120,13 @@ console.log(encodeURIComponent(message));
     </div>
 
     <div class="row">
+        <span class="label">📅 Date</span>
+        <span class="value">${returnDate}</span>
+    </div>
+
+    <div class="row">
         <span class="label">🚆 Train</span>
-        <span class="value">${p["Return Train"]}</span>
+        <span class="value">${p.TrainNoR}-${p.TrainNameR}</span>
     </div>
 
     <div class="row">
@@ -130,10 +139,7 @@ console.log(encodeURIComponent(message));
         <span class="value">${p["Return Seatno"]}</span>
     </div>
 
-    <div class="row">
-        <span class="label">🛏 Birth</span>
-        <span class="value">${p["Return Birth"]}</span>
-    </div>
+    
 
 </div>
 <div class="message-btn">
@@ -151,4 +157,16 @@ console.log(encodeURIComponent(message));
 
     document.getElementById("result").innerHTML=html;
 
+}
+
+function formatDate(dateValue) {
+    if (!dateValue) return "";
+
+    const date = new Date(dateValue);
+
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+
+    return `${day}-${month}-${year}`;
 }
