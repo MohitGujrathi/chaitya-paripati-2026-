@@ -42,7 +42,7 @@ Dear *${p.Name}*,
 
 Your Journey Details:
 
-🛄 *Going Journey*
+🛄 *Pune to Surat*
 📅 Date: ${journeyDate}
 🚂 Train: ${p.TrainNo} ${p.TrainName}
 🚃 Coach: ${p.Coach}
@@ -50,7 +50,7 @@ Your Journey Details:
 
 --------------------------------
 
-🛄 *Return Journey*
+🛄 *Surat to Pune*
 📅 Date:  ${returnDate}
 🚂 Train: ${p["TrainNoR"]} ${p["TrainNameR"]}
 🚃 Coach: ${p["Return Coach"]}
@@ -94,7 +94,7 @@ console.log(encodeURIComponent(message));
 
 
     <div class="trip-title">
-        🛕 Going Journey
+        🛕 Pune To Surat
     </div>
     
     <div class="row">
@@ -111,16 +111,19 @@ console.log(encodeURIComponent(message));
         <span class="label">🚪 Coach</span>
         <span class="value">${p.Coach}</span>
     </div>
-
     <div class="row">
         <span class="label">💺 Seat</span>
         <span class="value">${p.Seatno}</span>
+    </div>
+    <div class="row">
+        <span class="label">🛏 Berth</span>
+        <span class="value">${p.Berth}</span> 
     </div>
 
 
 
     <div class="trip-title">
-        🔄 Return Journey
+        🔄 Surat To Pune
     </div>
 
     <div class="row">
@@ -141,6 +144,11 @@ console.log(encodeURIComponent(message));
     <div class="row">
         <span class="label">💺 Seat</span>
         <span class="value">${p["Return Seatno"]}</span>
+    </div>
+
+    <div class="row">
+        <span class="label">🛏 Berth</span>
+        <span class="value">${p.BerthR}</span> 
     </div>
 
     
