@@ -101,7 +101,37 @@ async function searchPassenger(){
     </div>
 
 </div>
+<div class="message-btn">
 
+<a target="_blank"
+href="https://wa.me/91${p.Mobile}?text=
+🙏 श्री पौड रोड जैन श्वेतांबर मूर्ति पूजक संघ
+
+पूर्णिमा पाबल यात्रा वर्ग, पुणे
+
+Dear ${p.Name},
+
+Your journey details:
+
+Going Journey:
+Train: ${p.Train}
+Coach: ${p.Coach}
+Seat: ${p.Seatno}
+Birth: ${p.Birth}
+
+Return Journey:
+Train: ${p["Return Train"]}
+Coach: ${p["Return Coach"]}
+Seat: ${p["Return Seatno"]}
+Birth: ${p["Return Birth"]}
+
+Thank you."
+>
+📱 Send WhatsApp Message
+
+</a>
+
+</div>
 `;
 
         });
