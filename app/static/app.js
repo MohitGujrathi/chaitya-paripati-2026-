@@ -20,7 +20,7 @@ async function searchPassenger(){
     document.getElementById("loading").style.display="none";
 
     let html="";
-
+    
     if(data.length===0){
 
         html="<div class='no-result'>No Passenger Found</div>";
@@ -28,7 +28,42 @@ async function searchPassenger(){
     }else{
 
         data.forEach(p=>{
+            const message = `
+            🙏 *श्री पौड रोड जैन श्वेतांबर मूर्ति पूजक संघ*
 
+            🌸 *पूर्णिमा पाबल यात्रा वर्ग, पुणे*
+
+            ----------------
+
+            Dear *${p.Name}*,
+
+            Your Journey Details:
+
+            🛄 *Going Journey*
+            🚂 Train: ${p.Train}
+            🚃 Coach: ${p.Coach}
+            💺 Seat No: ${p.Seatno}
+            🛏️ Birth: ${p.Birth}
+
+            ----------------
+
+            🛄 *Return Journey*
+            🚂 Train: ${p["Return Train"]}
+            🚃 Coach: ${p["Return Coach"]}
+            💺 Seat No: ${p["Return Seatno"]}
+            🛏️ Birth: ${p["Return Birth"]}
+
+            ----------------
+
+            🙏 धन्यवाद
+            श्री पौड रोड जैन श्वेतांबर मूर्ति पूजक संघ
+            `;
+
+            const whatsappUrl =
+            "https://wa.me/91" + p.Mobile + "?text=" + 
+            encodeURIComponent(message);
+            console.log(message);
+console.log(encodeURIComponent(message));
             html += `
 
 <div class="card">
@@ -103,33 +138,9 @@ async function searchPassenger(){
 </div>
 <div class="message-btn">
 
-<a target="_blank"
-href="https://wa.me/91${p.Mobile}?text=
-🙏 श्री पौड रोड जैन श्वेतांबर मूर्ति पूजक संघ
-
-पूर्णिमा पाबल यात्रा वर्ग, पुणे
-
-Dear ${p.Name},
-
-Your journey details:
-
-Going Journey:
-Train: ${p.Train}
-Coach: ${p.Coach}
-Seat: ${p.Seatno}
-Birth: ${p.Birth}
-
-Return Journey:
-Train: ${p["Return Train"]}
-Coach: ${p["Return Coach"]}
-Seat: ${p["Return Seatno"]}
-Birth: ${p["Return Birth"]}
-
-Thank you."
->
-📱 Send WhatsApp Message
-
-</a>
+ <a class="message-btn" target="_blank" href="${whatsappUrl}">
+            📱 Send WhatsApp Message
+        </a>
 
 </div>
 `;
