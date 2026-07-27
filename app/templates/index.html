@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Passenger Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Passenger Search</h2>
+
+    <input 
+        id="searchBox"
+        type="text"
+        placeholder="Enter Name / Mobile / PNR"
+    >
+
+    <button onclick="searchPassenger()">
+        Search
+    </button>
+
+
+    <div id="result"></div>
+
+</div>
+
+
+<script>
+
+async function searchPassenger(){
+
+    let value = document.getElementById("searchBox").value;
+
+    let response = await fetch(
+        `/search?name=${value}&mobile=${value}&pnr=${value}`
+    );
+
+    let data = await response.json();
+
+    let result = document.getElementById("result");
+
+    result.innerHTML = "";
+
+
+    if(data.length === 0){
+
+        result.innerHTML =
+        "<p>No passenger found</p>";
+
+        return;
+    }
+
+
+    data.forEach(p => {
+
+        result.innerHTML += `
+
+        <div class="card">
+
+            <h3>${p.Name}</h3>
+
+            <p>📱 ${p.Mobile}</p>
+            <p>🎫 PNR: ${p.PNR}</p>
+            <p>🚆 Train: ${p.Train}</p>
+            <p>🚪 Coach: ${p.Coach}</p>
+            <p>💺 Seat: ${p.Seat}</p>
+            <p>Status: ${p.Status}</p>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+</script>
+
+
+</body>
+</html>
